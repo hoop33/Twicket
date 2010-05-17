@@ -69,7 +69,8 @@
 
 #footer li {
   list-style-type: none;
-  display: inline;
+  display: block;
+  padding: 2px;
 }  
 
 .feedbackPanel {
