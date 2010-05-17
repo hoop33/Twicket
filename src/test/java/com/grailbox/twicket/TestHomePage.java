@@ -1,7 +1,8 @@
-package com.availity.twicket;
+package com.grailbox.twicket;
 
-import com.availity.twicket.HomePage;
-import com.availity.twicket.WicketApplication;
+import com.grailbox.twicket.HomePage;
+import com.grailbox.twicket.WicketApplication;
+
 import junit.framework.TestCase;
 import org.apache.wicket.util.tester.WicketTester;
 

@@ -1,4 +1,4 @@
-package com.availity.twicket;
+package com.grailbox.twicket;
 
 import org.mortbay.jetty.Connector;
 import org.mortbay.jetty.Server;

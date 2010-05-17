@@ -1,4 +1,4 @@
-package com.availity.twicket;
+package com.grailbox.twicket;
 
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.ComponentTag;

@@ -1,4 +1,4 @@
-package com.availity.twicket;
+package com.grailbox.twicket;
 
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.StatelessForm;

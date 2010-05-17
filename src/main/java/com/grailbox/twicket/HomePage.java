@@ -1,4 +1,4 @@
-package com.availity.twicket;
+package com.grailbox.twicket;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;

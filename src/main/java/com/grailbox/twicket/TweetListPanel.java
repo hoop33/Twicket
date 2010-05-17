@@ -1,4 +1,4 @@
-package com.availity.twicket;
+package com.grailbox.twicket;
 
 import java.text.SimpleDateFormat;
 import java.util.Collections;

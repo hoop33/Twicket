@@ -1,4 +1,4 @@
-package com.availity.twicket;
+package com.grailbox.twicket;
 
 import java.io.Serializable;
 import java.util.Collections;
