@@ -50,6 +50,7 @@ public class TweetListPanel extends Panel {
 
   private class TweetListView extends ListView<Status> {
     private static final long serialVersionUID = -8745103599338918600L;
+    private SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 
     private TweetListView(String id, IModel<List<Status>> model) {
       super(id, model);
@@ -57,8 +58,7 @@ public class TweetListPanel extends Panel {
 
     @Override
     protected void populateItem(final ListItem<Status> listItem) {
-      SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-      Status status = (Status) listItem.getModelObject();
+      Status status = listItem.getModelObject();
       listItem.add(new ExternalImageUrl("image_url", status.getUser().getProfileImageUrl().toString()));
       listItem.add(new Label("date", sdf.format(status.getCreatedAt())));
       listItem.add(new ExternalLink("user_link", "http://twitter.com/" + status.getUser().getScreenName(), status.getUser().getScreenName()));
