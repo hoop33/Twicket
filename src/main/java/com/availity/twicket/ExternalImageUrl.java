@@ -5,7 +5,6 @@ import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.WebComponent;
 import org.apache.wicket.model.Model;
 
-
 public class ExternalImageUrl extends WebComponent {
   private static final long serialVersionUID = 2605638499951950339L;
 
@@ -19,4 +18,4 @@ public class ExternalImageUrl extends WebComponent {
     super.onComponentTag(tag);
     checkComponentTag(tag, "img");
   }
-}  
+}
