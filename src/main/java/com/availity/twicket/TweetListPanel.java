@@ -13,12 +13,8 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 
-import twitter4j.Query;
-import twitter4j.QueryResult;
-import twitter4j.Tweet;
-import twitter4j.Twitter;
-import twitter4j.TwitterException;
-import twitter4j.TwitterFactory;
+import winterwell.jtwitter.Twitter;
+import winterwell.jtwitter.Twitter.Status;
 
 public class TweetListPanel extends Panel {
   private static final long serialVersionUID = -4056830780523403665L;
@@ -28,7 +24,7 @@ public class TweetListPanel extends Panel {
     add(new TweetListView("tweetListView", new TweetListLDM(searchParams)));
   }
   
-  private class TweetListLDM extends LoadableDetachableModel<List<Tweet>> {
+  private class TweetListLDM extends LoadableDetachableModel<List<Status>> {
     private static final long serialVersionUID = 1L;
     private SearchParams params;
     
@@ -37,36 +33,40 @@ public class TweetListPanel extends Panel {
     }
 
     @Override
-    protected List<Tweet> load() {
-      Twitter twitter = new TwitterFactory().getInstance();
+    protected List<Status> load() {
       if (params == null) {
         return Collections.emptyList();
       }
+      
+      return new Twitter().search(params.searchString);
+      
+      
+/*      Twitter twitter = new TwitterFactory().getInstance();
       Query query = new Query(params.searchString);
       try {
         QueryResult result = twitter.search(query);
         return result.getTweets();
       } catch (TwitterException e) {
         throw new RuntimeException(e);
-      }
+      } */
     }
   }
 
-  private class TweetListView extends ListView<Tweet> {
+  private class TweetListView extends ListView<Status> {
     private static final long serialVersionUID = -8745103599338918600L;
 
-    private TweetListView(String id, IModel<List<Tweet>> model) {
+    private TweetListView(String id, IModel<List<Status>> model) {
       super(id, model);
     }
 
     @Override
-    protected void populateItem(final ListItem<Tweet> listItem) {
+    protected void populateItem(final ListItem<Status> listItem) {
       SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-      Tweet tweet = (Tweet) listItem.getModelObject();
-      listItem.add(new ExternalImageUrl("image_url", tweet.getProfileImageUrl()));
-      listItem.add(new Label("date", sdf.format(tweet.getCreatedAt())));
-      listItem.add(new ExternalLink("user_link", "http://twitter.com/" + tweet.getFromUser(), tweet.getFromUser()));
-      listItem.add(new MultiLineLabel("text", tweet.getText()));
+      Status status = (Status) listItem.getModelObject();
+      listItem.add(new ExternalImageUrl("image_url", status.getUser().getProfileImageUrl().toString()));
+      listItem.add(new Label("date", sdf.format(status.getCreatedAt())));
+      listItem.add(new ExternalLink("user_link", "http://twitter.com/" + status.getUser().getScreenName(), status.getUser().getScreenName()));
+      listItem.add(new MultiLineLabel("text", status.getText()));
     }
   }
 }
