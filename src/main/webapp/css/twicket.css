@@ -22,6 +22,35 @@
   float: left;
 }
 
+#header #links {
+  padding: 40px 10px 0 0;
+  float: right;
+}
+
+#header #links a {
+  text-decoration: none;
+  color: #527f2e;
+  padding: 5px;
+}
+
+#header #links a:link {
+  color: #527f2e;
+}
+
+#header #links a:visited {
+  color: #527f2e;
+}
+
+#header #links a:hover {
+  background-color: #527f2e;
+  color: #a4ff5c;
+}
+
+#header #links a:active {
+  background-color: #527f2e;
+  color: #a4ff5c;
+}
+
 #content {
   width: 100%;
   background-color: #fff;

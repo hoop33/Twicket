@@ -7,10 +7,6 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.validation.validator.StringValidator.MinimumLengthValidator;
 
-/**
- * 
- * @author rwarner
- */
 public class SearchPanel extends Panel {
   private static final long serialVersionUID = -8610733111417498232L;
 
@@ -31,7 +27,7 @@ public class SearchPanel extends Panel {
 
     @Override
     protected final void onSubmit() {
-      setResponsePage(new HomePage(getModelObject()));
+      setResponsePage(new HomePage(new SearchTweetRetriever(getModelObject())));
     }
   }
 }

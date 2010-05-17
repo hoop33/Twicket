@@ -13,42 +13,38 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 
-import winterwell.jtwitter.Twitter;
+import winterwell.jtwitter.TwitterException;
 import winterwell.jtwitter.Twitter.Status;
 
 public class TweetListPanel extends Panel {
   private static final long serialVersionUID = -4056830780523403665L;
 
-  public TweetListPanel(String id, SearchParams searchParams) {
+  public TweetListPanel(String id, TweetRetriever tweetRetriever) {
     super(id);
-    add(new TweetListView("tweetListView", new TweetListLDM(searchParams)));
+    add(new TweetListView("tweetListView", new TweetListLDM(tweetRetriever)));
   }
   
   private class TweetListLDM extends LoadableDetachableModel<List<Status>> {
     private static final long serialVersionUID = 1L;
-    private SearchParams params;
+    private TweetRetriever tweetRetriever;
     
-    public TweetListLDM(final SearchParams params) {
-      this.params = params;
+    public TweetListLDM(final TweetRetriever tweetRetriever) {
+      this.tweetRetriever = tweetRetriever;
     }
 
     @Override
     protected List<Status> load() {
-      if (params == null) {
-        return Collections.emptyList();
+      List<Status> list = null;
+      if (tweetRetriever != null) {
+        try {
+          list = tweetRetriever.retrieveTweets();
+        } catch (TwitterException e) {
+          error(e.getMessage());
+        }
+      } else {
+        list = Collections.emptyList();
       }
-      
-      return new Twitter().search(params.searchString);
-      
-      
-/*      Twitter twitter = new TwitterFactory().getInstance();
-      Query query = new Query(params.searchString);
-      try {
-        QueryResult result = twitter.search(query);
-        return result.getTweets();
-      } catch (TwitterException e) {
-        throw new RuntimeException(e);
-      } */
+      return list;
     }
   }
 
