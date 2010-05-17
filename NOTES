@@ -1,0 +1,4 @@
+Change SearchForm to extend StatelessForm, not Form
+Change HomePage constructor to receive PageParameters, not List of Tweets
+Change search to happen in constructor of HomePage
+
