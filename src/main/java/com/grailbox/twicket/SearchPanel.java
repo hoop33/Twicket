@@ -22,7 +22,7 @@ public class SearchPanel extends Panel {
       super(id);
       setModel(new CompoundPropertyModel<SearchParams>(new SearchParams()));
       add(new Label("searchLabel", "Search Terms:"));
-      add(new TextField<String>("searchString").add(new MinimumLengthValidator(1)));
+      add(new TextField<String>("searchString").setRequired(true).add(new MinimumLengthValidator(5)));
     }
 
     @Override
