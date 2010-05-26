@@ -18,3 +18,4 @@ make sure Maven 2 is installed and configured and type:
 
 mvn jetty:run
 
+Thanks to Rob McGuinness for all his Wicket help!
