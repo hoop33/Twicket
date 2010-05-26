@@ -19,23 +19,25 @@ import winterwell.jtwitter.Twitter.Status;
 public class TweetListPanel extends Panel {
   private static final long serialVersionUID = -4056830780523403665L;
 
-  public TweetListPanel(String id, TweetRetriever tweetRetriever) {
+  public TweetListPanel(String id, TweetRetriever tweetRetriever, boolean hasError) {
     super(id);
-    add(new TweetListView("tweetListView", new TweetListLDM(tweetRetriever)));
+    add(new TweetListView("tweetListView", new TweetListLDM(tweetRetriever, hasError)));
   }
   
   private class TweetListLDM extends LoadableDetachableModel<List<Status>> {
     private static final long serialVersionUID = 1L;
     private TweetRetriever tweetRetriever;
+    private boolean hasError;
     
-    public TweetListLDM(final TweetRetriever tweetRetriever) {
+    public TweetListLDM(final TweetRetriever tweetRetriever, boolean hasError) {
       this.tweetRetriever = tweetRetriever;
+      this.hasError = hasError;
     }
 
     @Override
     protected List<Status> load() {
       List<Status> list = null;
-      if (tweetRetriever != null) {
+      if (tweetRetriever != null && !hasError) {
         try {
           list = tweetRetriever.retrieveTweets();
         } catch (TwitterException e) {

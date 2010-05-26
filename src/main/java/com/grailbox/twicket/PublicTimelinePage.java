@@ -8,6 +8,6 @@ public class PublicTimelinePage extends WebPage {
   public PublicTimelinePage() {
     add(new BookmarkablePageLink<Void>("home", HomePage.class));
     add(new FeedbackPanel("feedback"));
-    add(new TweetListPanel("tweetListPanel", new PublicTweetRetriever()));
+    add(new TweetListPanel("tweetListPanel", new PublicTweetRetriever(), hasErrorMessage()));
   }
 }
