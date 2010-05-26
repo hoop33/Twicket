@@ -27,7 +27,10 @@ public class SearchPanel extends Panel {
 
     @Override
     protected final void onSubmit() {
-      setResponsePage(new HomePage(new SearchTweetRetriever(getModelObject())));
+      SearchParams params = getModelObject();
+      if (params != null) {
+        setResponsePage(new HomePage(new SearchTweetRetriever(params)));
+      }
     }
   }
 }

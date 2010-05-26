@@ -11,7 +11,7 @@ public class HomePage extends WebPage {
     add(new BookmarkablePageLink<Void>("publicTimeline", PublicTimelinePage.class));
     add(new FeedbackPanel("feedback"));
     add(new SearchPanel("searchPanel"));
-    add(new TweetListPanel("tweetListPanel", tweetRetriever, hasErrorMessage()));
+    add(new TweetListPanel("tweetListPanel", tweetRetriever));
   }
 
   public HomePage() {
