@@ -1,0 +1,14 @@
+Twicket
+-------
+
+Twicket is written in Apache Wicket (http://wicket.apache.org/), 
+and demonstrates how easy it is to reuse components in Wicket
+(the TwitterListPanel).
+
+Twicket allows you to search the Twitterverse. It also displays
+the Twitter public timeline.
+
+Twicket uses JTwitter (http://www.winterwell.com/software/jtwitter.php).
+
+Twicket is released under the Eclipse Public License 1.0.
+See LICENSE for details.
