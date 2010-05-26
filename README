@@ -12,3 +12,9 @@ Twicket uses JTwitter (http://www.winterwell.com/software/jtwitter.php).
 
 Twicket is released under the Eclipse Public License 1.0.
 See LICENSE for details.
+
+Twicket comes with a configured pom.xml for Maven 2. To run Twicket,
+make sure Maven 2 is installed and configured and type:
+
+mvn jetty:run
+
