@@ -62,19 +62,7 @@ public class TweetListPanel extends Panel {
       listItem.add(new ExternalImageUrl("image_url", status.getUser().getProfileImageUrl().toString()));
       listItem.add(new Label("date", sdf.format(status.getCreatedAt())));
       listItem.add(new ExternalLink("user_link", "http://twitter.com/" + status.getUser().getScreenName(), status.getUser().getScreenName()));
-      listItem.add(new MultiLineLabel("text", embedLinks(status.getText())).setEscapeModelStrings(false));
-    }
-
-    protected String embedLinks(String str) {
-      StringBuffer sb = new StringBuffer();
-      Pattern p = Pattern.compile("https?://\\S*");
-      Matcher m = p.matcher(str);
-      while (m.find()) {
-        String link = m.group();
-        m.appendReplacement(sb, "<a href='" + link + "'>" + link + "</a>");
-      }
-      m.appendTail(sb);
-      return sb.toString();
+      listItem.add(new MultiLineLinkLabel("text", status.getText()));
     }
   }
 }
